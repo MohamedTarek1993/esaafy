@@ -1,5 +1,26 @@
 <template>
   <section>
+    <!-- start about story -->
+    <div class="about-story">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 col-12">
+            <div
+              class="first py-5" >
+              <h4 class="title">{{aboutStory.title}}</h4>
+              <p class="info">{{aboutStory.info}}</p>
+              <router-link to="#"> أعرف المزيد</router-link>
+              </div>
+          </div>
+          <div class="col-lg-6 col-12">
+            <div @click="showModal = true" class="pop">
+              <Modal v-show="showModal" @close="showModal=false" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- finish about story -->
     <!-- start card service -->
     <div class="card-services">
       <h4 class="main-head">الخدمات</h4>
@@ -64,10 +85,9 @@
         <div class="row">
           <div class="col-lg-6 col-12">
             <div class="map">
-              <add-google-map />
             </div>
           </div>
-           <div class="col-lg-6 col-12"></div>
+          <div class="col-lg-6 col-12"></div>
         </div>
       </div>
     </div>
@@ -81,8 +101,7 @@ import CardAdventage from "../components/ui/CardAdventage.vue";
 import DownloadApp from "../components/ui/DownloadApp.vue";
 import LastNews from "../components/ui/LastNews.vue";
 import AppWork from "../components/ui/AppWork.vue";
-import AddGoogleMap from "../components/static/AddGoogleMap.vue";
-
+import Modal from "../components/ui/Modal.vue";
 
 export default {
   name: "Home",
@@ -92,10 +111,16 @@ export default {
     DownloadApp,
     LastNews,
     AppWork,
-    AddGoogleMap
+    Modal
   },
   data() {
     return {
+      showModal:false,
+      aboutStory: {
+        title: "تعرف علي قصتنا",
+        info: "هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها التطبيق.",
+        link: "",
+      },
       cardService: [
         {
           cardPhoto: "abmulance",
@@ -174,7 +199,7 @@ export default {
         cardInfo:
           "قم بزيادة الإنتاجية باستخدام تطبيق بسيط متعدد الإستخدامات لكل الخدمات الإسعافية",
       },
-      map:''
+      map: "",
     };
   },
 };
@@ -190,4 +215,18 @@ export default {
   padding: 30px 0;
   background: #e5ebf5;
 }
+ .title {
+      font-family: "bold";
+      font-size: 40px;
+      color: var(--color-secound);
+    }
+     .info {
+      font-family: "regular";
+      font-size: 20px;
+      padding-top: 10%;
+      line-height: 1.6;
+    }
+    .pop{
+      background-color: url('../assets/two-confident-young-doctors-ambulance-hospital.png');
+    }
 </style>
