@@ -7,8 +7,8 @@
             :src="require(`../../assets/cardService/${post.cardPhoto}.png`)"
           />
         </div>
-        <h4 class="title">{{ post.cardTitle }}</h4>
-        <p class="info">{{ post.cardInfo }}</p>
+        <h4 class="title">{{ post.Title }}</h4>
+        <p class="info">{{ post.text }}</p>
       </div>
     </div>
   </div>

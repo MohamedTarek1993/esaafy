@@ -5,16 +5,15 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-6 col-12">
-            <div
-              class="first py-5" >
-              <h4 class="title">{{aboutStory.title}}</h4>
-              <p class="info">{{aboutStory.info}}</p>
+            <div class="first py-5">
+              <h4 class="title">{{ aboutStory.title }}</h4>
+              <p class="info">{{ aboutStory.info }}</p>
               <router-link to="#"> أعرف المزيد</router-link>
-              </div>
+            </div>
           </div>
           <div class="col-lg-6 col-12">
             <div @click="showModal = true" class="pop">
-              <Modal v-show="showModal" @close="showModal=false" />
+              <Modal v-show="showModal" @close="showModal = false" />
             </div>
           </div>
         </div>
@@ -85,9 +84,16 @@
         <div class="row">
           <div class="col-lg-6 col-12">
             <div class="map">
+              <iframe
+                src="https://www.google.com/maps/d/embed?mid=1B1lAsUpYFg82Je7XN1_cxRPf1UU&ehbc=2E312F"
+                width="440"
+                height="480"
+              ></iframe>
             </div>
           </div>
-          <div class="col-lg-6 col-12"></div>
+          <div class="col-lg-6 col-12">
+            <form-create />
+          </div>
         </div>
       </div>
     </div>
@@ -96,12 +102,14 @@
 </template>
 
 <script>
+import axios from 'axios'
 import CardService from "../components/ui/CardService.vue";
 import CardAdventage from "../components/ui/CardAdventage.vue";
 import DownloadApp from "../components/ui/DownloadApp.vue";
 import LastNews from "../components/ui/LastNews.vue";
 import AppWork from "../components/ui/AppWork.vue";
 import Modal from "../components/ui/Modal.vue";
+import FormCreate from "../components/static/FormCreate.vue";
 
 export default {
   name: "Home",
@@ -111,11 +119,15 @@ export default {
     DownloadApp,
     LastNews,
     AppWork,
-    Modal
+    Modal,
+    FormCreate,
+  },
+  created() {
+    this.getServices()
   },
   data() {
     return {
-      showModal:false,
+      showModal: false,
       aboutStory: {
         title: "تعرف علي قصتنا",
         info: "هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها التطبيق.",
@@ -123,20 +135,23 @@ export default {
       },
       cardService: [
         {
+          id: '',
           cardPhoto: "abmulance",
-          cardTitle: "طلب إسعاف ",
-          cardInfo: "يمكنك طلب سيارة اسعاف بكل حرية وبكل سهولة",
+          title: "  ",
+          text: " ",
         },
         {
+           id: '',
           cardPhoto: "abmulance",
-          cardTitle: "إسعاف مخصوص",
-          cardInfo: "يمكنك طلب سيارة إسعاف مخصوص تلازم كل احتياجاتك",
+          title: " ",
+          text: "",
         },
         {
+           id: '',
           cardPhoto: "location",
-          cardTitle: "بين المدن",
-          cardInfo:
-            "يمكنك البحث عن مكان توفر الخدمةواين توجد سيارات الإسعافالخاصة بنا ",
+          title: " ",
+          text:
+            " ",
         },
       ],
       cardAdventage: [
@@ -202,6 +217,15 @@ export default {
       map: "",
     };
   },
+  methods:{
+    getServices(){
+    axios. get('https://esaafy.crazyideaco.com/public/api/get_service')
+    .then((response => {
+      console.log(response.data)
+      this.cardService = response.data
+    }))
+    }
+  }
 };
 </script>
 
@@ -215,18 +239,15 @@ export default {
   padding: 30px 0;
   background: #e5ebf5;
 }
- .title {
-      font-family: "bold";
-      font-size: 40px;
-      color: var(--color-secound);
-    }
-     .info {
-      font-family: "regular";
-      font-size: 20px;
-      padding-top: 10%;
-      line-height: 1.6;
-    }
-    .pop{
-      background-color: url('../assets/two-confident-young-doctors-ambulance-hospital.png');
-    }
+.title {
+  font-family: "bold";
+  font-size: 40px;
+  color: var(--color-secound);
+}
+.info {
+  font-family: "regular";
+  font-size: 20px;
+  padding-top: 10%;
+  line-height: 1.6;
+}
 </style>
