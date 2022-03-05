@@ -7,13 +7,13 @@
           <div class="col-lg-6 col-12">
             <div class="first py-5">
               <h4 class="title">{{ aboutStory.title }}</h4>
-              <p class="info">{{ aboutStory.info }}</p>
+              <p class="info">{{ aboutStory.text }}</p>
               <router-link to="#"> أعرف المزيد</router-link>
             </div>
           </div>
           <div class="col-lg-6 col-12">
-            <div @click="showModal = true" class="pop">
-              <Modal v-show="showModal" @close="showModal = false" />
+            <div class="img">
+              <img :src="aboutStory.image" alt="" />
             </div>
           </div>
         </div>
@@ -102,13 +102,12 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from "axios";
 import CardService from "../components/ui/CardService.vue";
 import CardAdventage from "../components/ui/CardAdventage.vue";
 import DownloadApp from "../components/ui/DownloadApp.vue";
 import LastNews from "../components/ui/LastNews.vue";
 import AppWork from "../components/ui/AppWork.vue";
-import Modal from "../components/ui/Modal.vue";
 import FormCreate from "../components/static/FormCreate.vue";
 
 export default {
@@ -119,39 +118,35 @@ export default {
     DownloadApp,
     LastNews,
     AppWork,
-    Modal,
     FormCreate,
   },
   created() {
-    this.getServices()
+    this.About(), this.getServices(), this.getDownloadApp();
   },
   data() {
     return {
       showModal: false,
       aboutStory: {
+        id: "1",
         title: "تعرف علي قصتنا",
         info: "هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها التطبيق.",
         link: "",
       },
       cardService: [
         {
-          id: '',
-          cardPhoto: "abmulance",
+          id: "0",
           title: "  ",
           text: " ",
         },
         {
-           id: '',
-          cardPhoto: "abmulance",
+          id: "1",
           title: " ",
           text: "",
         },
         {
-           id: '',
-          cardPhoto: "location",
+          id: "2",
           title: " ",
-          text:
-            " ",
+          text: " ",
         },
       ],
       cardAdventage: [
@@ -180,10 +175,10 @@ export default {
         },
       ],
       downloadApp: {
-        cardPhoto: "download",
-        cardTitle: " حمل الان تطبيق إسعافي  ",
-        cardInfo:
-          "هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها التطبيق.",
+        id: "1",
+        image: "",
+        title: "",
+        text: "",
       },
       lastNews: [
         {
@@ -217,15 +212,33 @@ export default {
       map: "",
     };
   },
-  methods:{
-    getServices(){
-    axios. get('https://esaafy.crazyideaco.com/public/api/get_service')
-    .then((response => {
-      console.log(response.data)
-      this.cardService = response.data
-    }))
-    }
-  }
+  methods: {
+      About() {   //about section
+      axios
+        .get("https://esaafy.crazyideaco.com/public/api/get_about")
+        .then((response) => {
+          // console.log(response.data)
+          this.aboutStory = response.data.data;
+        });
+    },
+    getServices() { //service section
+      axios
+        .get("https://esaafy.crazyideaco.com/public/api/get_service")
+        .then((response) => {
+          // console.log(response.data)
+          this.cardService = response.data.data;
+        });
+    },
+    getDownloadApp() { //download app section 
+      axios
+        .get("https://esaafy.crazyideaco.com/public/api/get_app")
+        .then((response) => {
+          // console.log(response.data)
+          this.downloadApp = response.data.data;
+          console.log(response.data);
+        });
+    },
+  },
 };
 </script>
 

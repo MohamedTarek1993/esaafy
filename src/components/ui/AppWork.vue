@@ -1,9 +1,9 @@
 <template>
   <div class="app-work">
-    <h4 class="title">{{ post.cardTitle }}</h4>
-    <p class="info">{{ post.cardInfo }}</p>
+    <h4 class="title">{{ post.title }}</h4>
+    <p class="info">{{ post.text }}</p>
     <div></div>
-    <img :src="require(`../../assets/${post.cardPhoto}.png`)" />
+    <img :src="post.image" />
   </div>
 </template>
 

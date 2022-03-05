@@ -3,9 +3,10 @@
     <div class="card-service">
       <div class="content">
         <div class="img">
-          <img
-            :src="require(`../../assets/cardService/${post.cardPhoto}.png`)"
-          />
+         <i v-if="index=0" class="bi bi-bag"></i>
+           <i v-if="index=1" class="bi bi-alarm-fill"></i>
+             <i v-if="index=2" class="bi bi-alarm-fill"></i>
+        
         </div>
         <h4 class="title">{{ post.Title }}</h4>
         <p class="info">{{ post.text }}</p>

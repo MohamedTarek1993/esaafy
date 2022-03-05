@@ -4,8 +4,8 @@
       <div class="row">
         <div class="col-lg-6 col-12">
           <div class="content">
-            <h4 class="title">{{ post.cardTitle }}</h4>
-            <p class="info">{{ post.cardInfo }}</p>
+            <h4 class="title">{{ post.title }}</h4>
+            <p class="info">{{ post.text }}</p>
             <div class="d-flex justify-content-between w-75">
               <router-link to="#" class="store">
                 <div class="icon">
@@ -24,7 +24,7 @@
         </div>
         <div class="col-lg-6 col-12">
           <div class="img">
-            <img :src="require(`../../assets/${post.cardPhoto}.png`)" />
+            <img :src="post.image" />
           </div>
         </div>
       </div>

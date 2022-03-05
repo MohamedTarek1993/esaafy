@@ -59,7 +59,7 @@ body {
   padding: 0;
   overflow-x: hidden;
   list-style: none;
-  direction: rtl;
+  direction:rtl;
   height: 100vh;
 }
 html {
