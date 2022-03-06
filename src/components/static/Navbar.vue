@@ -33,6 +33,21 @@
           </div>
           <div class="col-lg-3 col-12">
             <router-link to="#" class="main-btn"> حمل التطبيق </router-link>
+            <div class="dropdown">
+              <button
+                class="btn btn-secondary dropdown-toggle"
+                type="button"
+                id="dropdownMenuButton1"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                العربيه
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="#">En</a></li>
+     
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -57,6 +72,8 @@
 </template>
 
 <script>
+import i18n form '@/plugins/i18n'
+import axios from 'axios'
 export default {
   name: "NavBar",
   components: {},

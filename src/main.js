@@ -1,19 +1,10 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from "./router";
-import * as VueGoogleMaps from "vue2-google-maps" // Import package
+import VueI18n from 'vue-i18n'
 
 Vue.config.productionTip = false
-
-Vue.use(VueGoogleMaps, {
-  load: {
-    key: "GOOGLE MAP API KEY GOES HERE",
-    libraries: "places"
-  }
-});
-
-Vue.config.productionTip = false
-
+Vue.use(VueI18n)
 new Vue({
   router,
   render: h => h(App),

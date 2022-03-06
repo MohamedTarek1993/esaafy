@@ -10,6 +10,7 @@
   "dependencies": {
     "axios": "^0.26.0",
     "core-js": "^3.6.5",
+    "i18n": "^0.14.2",
     "vue": "^2.6.11",
     "vue-router": "^3.5.3",
     "vue2-google-maps": "^0.10.7"
